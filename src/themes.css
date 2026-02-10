@@ -1,0 +1,88 @@
+[data-theme="blue"] {  
+  --color-primary: #2563EB;
+  --color-primary-hover: #1E40AF;
+  --color-secondary: #38BDF8;
+  --color-secondary-soft: #E0F2FE;
+
+  --color-bg-main: #F8FAFC;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtile: #EFF6FF;
+
+  --color-text-primary: #0F172A;
+  --color-text-on-primary: #FFFFFF;
+  --color-text-secondary: #475569;
+
+  --color-border: #CBD5E1;
+  --color-divider: #E2E8F0;
+  --color-focus-ring: #93C5FD;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #0EA5E9;
+
+   --color-success-bg: #DCFCE7;
+  --color-warning-bg: #FEF3C7; 
+  --color-error-bg: #FEE2E2;
+  --color-info-bg: #E0F2FE;
+}
+
+[data-theme="red"] {  
+--color-primary: #DC2626;
+  --color-primary-hover: #B91C1C;
+  --color-secondary: #F87171;
+  --color-secondary-soft: #FEE2E2;
+
+  --color-bg-main: #FEF2F2;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtile: #FEE2E2;
+
+  --color-text-on-primary: #FFFFFF;
+  --color-text-primary: #0F172A;
+  --color-text-secondary: #991B1B;
+  --color-text-disabled: #FCA5A5;
+
+  --color-border: #FCA5A5;
+  --color-divider: #FECACA;
+  --color-focus-ring: #F87171;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #0EA5E9;
+
+   --color-success-bg: #DCFCE7;
+  --color-warning-bg: #FEF3C7; 
+  --color-error-bg: #FEE2E2;
+  --color-info-bg: #E0F2FE;
+}
+
+[data-theme="green"] {  
+  --color-primary: #16A34A;
+  --color-primary-hover: #15803D;
+  --color-secondary: #4ADE80;
+  --color-secondary-soft: #DCFCE7;
+
+  --color-bg-main: #F0FDF4;
+  --color-bg-surface: #FFFFFF;
+  --color-bg-subtile: #DCFCE7;
+
+  --color-text-primary: #0F172A;
+  --color-text-on-primary: #FFFFFF;
+  --color-text-secondary: #166534;
+  --color-text-disabled: #86EFAC;
+
+  --color-border: #BBF7D0;
+  --color-divider: #D1FAE5;
+  --color-focus-ring: #4ADE80;
+
+  --color-success: #22C55E;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-info: #0EA5E9;
+
+  --color-success-bg: #DCFCE7;
+  --color-warning-bg: #FEF3C7; 
+  --color-error-bg: #FEE2E2;
+  --color-info-bg: #E0F2FE;
+}
