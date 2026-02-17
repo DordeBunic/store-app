@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./themes.css";
@@ -6,19 +6,22 @@ import { RouterProvider } from "react-router/dom";
 import { createBrowserRouter } from "react-router";
 import { store } from "./services/state/store";
 import { Provider as ReduxProvider } from "react-redux";
-import LoginPage from "./pages/LoginPage";
-import PreLoginLayout from "./components/layout/PreLoginLayout";
 import { POST_LOGIN_PAGES, PRE_LOGIN_PAGES } from "./constants/pageRoutes";
-import PostLoginLayout from "./components/layout/PostLoginLayout";
-import ProductsPage from "./pages/ProductsPage";
-import ProductDetailsPage from "./pages/ProductDetailsPage";
-import CartPage from "./pages/CartPage";
 import { ThemeProvider } from "./services/provider/ThemeProvider";
-import SettingsPage from "./pages/SettingsPage";
 import { ToastProvider } from "./services/provider/ToastProvider";
-import NotFoundPage from "./pages/NotFoundPage";
 import { I18nProvider } from "./services/i18n/I18nContext";
-import RegisterPage from "./pages/RegisterPage";
+
+const PreLoginLayout = lazy(() => import("./components/layout/PreLoginLayout"));
+const PostLoginLayout = lazy(
+  () => import("./components/layout/PostLoginLayout"),
+);
+const CartPage = lazy(() => import("./pages/CartPage"));
+const LoginPage = lazy(() => import("./pages/LoginPage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const ProductsPage = lazy(() => import("./pages/ProductsPage"));
+const ProductDetailsPage = lazy(() => import("./pages/ProductDetailsPage"));
+const SettingsPage = lazy(() => import("./pages/SettingsPage"));
+const NotFoundPage = lazy(() => import("./pages/NotFoundPage"));
 
 const router = createBrowserRouter([
   {

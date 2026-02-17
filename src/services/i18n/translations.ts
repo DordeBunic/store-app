@@ -119,7 +119,7 @@ export const translations = {
     },
     filters: {
       search: "Pretraži",
-      category: "Category",
+      category: "Kategorija",
       min_price: "Minimalna Cijena",
       max_price: "Maximalna Cijena",
       apply: "Primjeni",

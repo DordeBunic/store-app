@@ -1,19 +1,19 @@
-import type { ChangeEvent } from "react";
-import Button from "@/components/ui/Button";
-import { useForm } from "@/hooks/useForm";
 import { useI18n } from "@/services/i18n/I18nContext";
-import { useLogin } from "@/hooks/useLogin";
-import { Typography } from "./ui/Text";
-import type { LoginCredentials } from "@/models/LoginCredentials";
+import Typography from "./ui/Text";
+import { useRegister } from "@/hooks/useRegister";
+import type { ChangeEvent } from "react";
+import type { RegisterCredentials } from "@/models/RegisterCredentials";
+import { useForm } from "@/hooks/useForm";
+import Button from "./ui/Button";
 import FormInput from "./ui/FormInput";
-const LoginForm = () => {
-  const { t } = useI18n();
-  const { submit } = useLogin();
-  const { values, onChange } = useForm<LoginCredentials>({
+const RegisterForm = () => {
+  const { values, onChange } = useForm<RegisterCredentials>({
     email: "",
     password: "",
+    confirmPassword: "",
   });
-
+  const { t } = useI18n();
+  const { submit } = useRegister();
   const handleSubmit = (e: ChangeEvent) => {
     e.preventDefault();
     submit(values);
@@ -23,25 +23,32 @@ const LoginForm = () => {
     <form onSubmit={handleSubmit}>
       <div className="flex flex-row justify-content-center gap-10">
         <Typography className="text-align-center" as="h1">
-          {t("page_titles.login")}
+          {t("page_titles.register")}
         </Typography>
 
         <div className="flex flex-row gap-4">
-          <FormInput<LoginCredentials>
+          <FormInput<RegisterCredentials>
             name="email"
             autoComplete="email"
             placeholder={t("common.username")}
             onChange={onChange}
           />
-          <FormInput<LoginCredentials>
+          <FormInput<RegisterCredentials>
             name="password"
             type="password"
             autoComplete="current-password"
             placeholder={t("common.password")}
             onChange={onChange}
           />
+          <FormInput<RegisterCredentials>
+            name="confirmPassword"
+            type="password"
+            autoComplete="current-password"
+            placeholder={t("common.confirm_password")}
+            onChange={onChange}
+          />
           <Button variant="primary" type="submit">
-            {t("page_titles.login")}
+            {t("page_titles.register")}
           </Button>
         </div>
       </div>
@@ -49,4 +56,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

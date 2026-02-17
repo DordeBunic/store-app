@@ -779,7 +779,6 @@ p{
 }
 .toast {
   min-width: 280px;
-  max-width: 360px;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow:
