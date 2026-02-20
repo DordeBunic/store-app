@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ImageText from "./ImageText";
 import Text from "./ui/Text";
+import { IconSizes } from "@/constants/iconSizes";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -20,7 +21,7 @@ const Footer = () => {
             target="_blank"
           >
             <ImageText type="primary" text="Github" horizontal>
-              <FaGithub size={20} />
+              <FaGithub size={IconSizes.Footer} />
             </ImageText>
           </Link>
 
@@ -36,7 +37,7 @@ const Footer = () => {
               horizontal
               className="align-items-center"
             >
-              <FaLinkedin size={20} />
+              <FaLinkedin size={IconSizes.Footer} />
             </ImageText>
           </Link>
         </div>

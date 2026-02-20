@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { POST_LOGIN_PAGES } from "@/constants/pageRoutes";
+import { POST_LOGIN_PAGES, PRE_LOGIN_PAGES } from "@/constants/pageRoutes";
 import { isPostLoginPage, isPreLoginPage } from "@/utils/validators";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { waitForAuthReady } from "@/services/api/authReady";
@@ -32,7 +32,7 @@ export function AuthWatcher() {
           }
         } else {
           if (isPostLoginPage(currentUrl)) {
-            navigate("/", { replace: true });
+            navigate(PRE_LOGIN_PAGES.HOME_PAGE, { replace: true });
           }
           storage.clearAll();
         }

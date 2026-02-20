@@ -8,6 +8,7 @@ import { useI18n } from "@/services/i18n/I18nContext";
 import ImageText from "@/components/ImageText";
 import Text from "@/components/ui/Text";
 import { showSuccessToast } from "@/utils/toast";
+import { IconSizes } from "@/constants/iconSizes";
 
 const CartPage = () => {
   const { t } = useI18n();
@@ -26,7 +27,7 @@ const CartPage = () => {
     return (
       <div className="flex flex-row justify-content-center gap-6 pt-10 text-align-center">
         <ImageText type="info" text={t("errors.empty_cart")}>
-          <BsCartX size={70} />
+          <BsCartX size={IconSizes.lg} />
         </ImageText>
       </div>
     );
@@ -66,7 +67,7 @@ const CartPage = () => {
               disabled={totalItems == 0}
               onClick={() => {
                 dispatch(deleteAllItems());
-                showSuccessToast(t("common.success_purchese"));
+                showSuccessToast(t("common.success_purchese"), dispatch);
               }}
             >
               {t("common.order")}

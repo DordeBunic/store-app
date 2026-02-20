@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import type { ToastType } from "@/models/ToastMessage";
 import { IoCloseSharp } from "react-icons/io5";
 import Text from "./ui/Text";
+import { IconSizes } from "@/constants/iconSizes";
 
 interface ToastProps {
   id: string;
@@ -38,7 +39,7 @@ export const Toast = ({
       <IoCloseSharp
         onClick={() => onClose(id)}
         aria-label="Dismiss"
-        size={20}
+        size={IconSizes.Toast}
       ></IoCloseSharp>
     </div>
   );

@@ -16,22 +16,22 @@ export const useRegister = () => {
     const { email, password, confirmPassword } = credentials;
 
     if (!email) {
-      return showErrorToast(t("auth.email_empty"));
+      return showErrorToast(t("auth.email_empty"), dispatch);
     }
     if (!password) {
-      return showErrorToast(t("auth.password_empty"));
+      return showErrorToast(t("auth.password_empty"), dispatch);
     }
     if (!confirmPassword) {
-      return showErrorToast(t("auth.confirm_password_empty"));
+      return showErrorToast(t("auth.confirm_password_empty"), dispatch);
     }
     if (!isValidEmail(email)) {
-      return showErrorToast(t("auth.email_not_valid"));
+      return showErrorToast(t("auth.email_not_valid"), dispatch);
     }
     if (password !== confirmPassword) {
-      return showErrorToast(t("auth.password_does_not_match"));
+      return showErrorToast(t("auth.password_does_not_match"), dispatch);
     }
     if (password.length < 6) {
-      return showErrorToast(t("auth.weak_password"));
+      return showErrorToast(t("auth.weak_password"), dispatch);
     }
     dispatch(registerUserAsync(credentials));
   };
@@ -40,17 +40,17 @@ export const useRegister = () => {
     if (!error) return;
     switch (error) {
       case "auth/email-already-in-use":
-        showErrorToast(t("auth.email_already_in_use"));
+        showErrorToast(t("auth.email_already_in_use"), dispatch);
         return;
       case "auth/invalid-email":
-        showErrorToast(t("auth.invalid_email"));
+        showErrorToast(t("auth.invalid_email"), dispatch);
         return;
 
       case "auth/weak-password":
-        showErrorToast(t("auth.weak_password"));
+        showErrorToast(t("auth.weak_password"), dispatch);
         return;
       default:
-        showErrorToast(t("auth.something_went_wrong"));
+        showErrorToast(t("auth.something_went_wrong"), dispatch);
     }
   }, [error, dispatch, t]);
 

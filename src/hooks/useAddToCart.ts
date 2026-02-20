@@ -16,7 +16,8 @@ export const useAddToCart = () => {
 
     showSuccessToast( count > 1
             ? t("common.items_added_in_cart", { title: product.title })
-            : t("common.item_added_in_cart", { title: product.title }));
+            : t("common.item_added_in_cart", { title: product.title }),
+            dispatch);
     
   };
 

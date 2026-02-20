@@ -5,6 +5,7 @@ import { FiFilter } from "react-icons/fi";
 import ProductsFilter from "@/components/ProductFilters";
 import { useI18n } from "@/services/i18n/I18nContext";
 import { isMobile } from "@/utils/other";
+import { IconSizes } from "@/constants/iconSizes";
 
 type Position = {
   top: number;
@@ -76,7 +77,7 @@ const ProductsPage: React.FC = () => {
           aria-expanded={open}
           className="icon-link cursor-pointer bg-transparent no-border p-1"
         >
-          <FiFilter size={26} className="primary-color text-primary" />
+          <FiFilter size={IconSizes.xs} className="primary-color text-primary" />
         </button>
       </div>
 

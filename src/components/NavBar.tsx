@@ -5,6 +5,7 @@ import { type RootState } from "@/services/state/store";
 import Badge from "./ui/Badge";
 import { POST_LOGIN_PAGES } from "@/constants/pageRoutes";
 import Logo from "./Logo";
+import { IconSizes } from "@/constants/iconSizes";
 
 const NavBar = () => {
   const cart = useSelector((state: RootState) => state.cart);
@@ -21,11 +22,11 @@ const NavBar = () => {
           to={POST_LOGIN_PAGES.CART_PAGE}
           className="cart-container position-relative inline-block text-primary"
         >
-          <IoCart size={36} className="icon-link" />
+          <IoCart size={IconSizes.md} className="icon-link" />
           <Badge variant="error" number={totalItems} />
         </Link>
         <Link to={POST_LOGIN_PAGES.SETTINGS_PAGE} className="text-primary">
-          <IoSettings size={36} className="icon-link" />
+          <IoSettings size={IconSizes.md} className="icon-link" />
         </Link>
       </div>
     </div>

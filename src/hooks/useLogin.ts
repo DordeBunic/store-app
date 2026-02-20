@@ -16,13 +16,13 @@ export const useLogin = () => {
     const { email, password } = credentials;
 
     if (!email) {
-      return showErrorToast(t("auth.email_empty"));
+      return showErrorToast(t("auth.email_empty"), dispatch);
     }
     if (!password) {
-      return showErrorToast(t("auth.password_empty"));
+      return showErrorToast(t("auth.password_empty"), dispatch);
     }
     if (!isValidEmail(email)) {
-      return showErrorToast(t("auth.email_not_valid"));
+      return showErrorToast(t("auth.email_not_valid"), dispatch);
     }
 
     dispatch(logInUserAsync(credentials));
@@ -35,9 +35,9 @@ export const useLogin = () => {
       error === "auth/wrong-password" ||
       error === "auth/user-not-found"
     ) {
-      showErrorToast(t("auth.wrong_credentials"));
+      showErrorToast(t("auth.wrong_credentials"), dispatch);
     }
-    showErrorToast(t("auth.something_went_wrong"));
+    showErrorToast(t("auth.something_went_wrong"), dispatch);
 
   }, [error, dispatch, t]);
 

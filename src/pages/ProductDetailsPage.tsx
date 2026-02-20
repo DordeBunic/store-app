@@ -9,6 +9,7 @@ import ProductPurchase from "@/components/ProductPurchase";
 import Text from "@/components/ui/Text";
 import { BiSolidError } from "react-icons/bi";
 import { useI18n } from "@/services/i18n/I18nContext";
+import { IconSizes } from "@/constants/iconSizes";
 
 const ProductDetailsPage = () => {
   const { t } = useI18n();
@@ -24,7 +25,7 @@ const ProductDetailsPage = () => {
   if (Number.isNaN(productId) || error) {
     return (
       <ImageText type="error" text={t("errors.general")}>
-        <BiSolidError size={70} />
+      <BiSolidError size={IconSizes.lg} />
       </ImageText>
     );
   }

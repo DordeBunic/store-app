@@ -1,16 +1,15 @@
 import type { ToastType } from "@/models/ToastMessage";
 import type { AppDispatch } from "@/services/state/store";
 import { addToast } from "@/services/state/toastSlice";
-import { useDispatch } from "react-redux";
 
-export const showErrorToast = (message: string) =>{
-    showToast(message, "error");
-}
-export const showSuccessToast = (message: string) =>{
-    showToast(message, "success");
-}
+export const showErrorToast = (message: string, dispatch: AppDispatch) => {
+    showToast(message, "error", dispatch);
+};
 
-const showToast = (message: string, type: ToastType) =>{
-    const dispatch = useDispatch<AppDispatch>();
+export const showSuccessToast = (message: string, dispatch: AppDispatch) => {
+    showToast(message, "success", dispatch);
+};
+
+const showToast = (message: string, type: ToastType, dispatch: AppDispatch) => {
     dispatch(addToast({ message, type }));
-}
+};
