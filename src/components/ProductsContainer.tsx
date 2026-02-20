@@ -10,6 +10,7 @@ import type { AppDispatch } from "@/services/state/store";
 import { addItem } from "@/services/state/cartSlice";
 import useFilteredProducts from "@/hooks/useFilteredProducts";
 import { BiSolidError } from "react-icons/bi";
+import { showSuccessToast } from "@/utils/toast";
 
 const ProductsContainer = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -46,14 +47,9 @@ const ProductsContainer = () => {
           }}
           onAddToCard={() => {
             dispatch(addItem({ product: product }));
-            dispatch(
-              addToast({
-                message: t("common.item_added_in_cart", {
-                  title: product.title,
-                }),
-                type: "success",
-              }),
-            );
+              showSuccessToast(
+                t("common.item_added_in_cart", {title: product.title })
+              )
           }}
         />
       ))}

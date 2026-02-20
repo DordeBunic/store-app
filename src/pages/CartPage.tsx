@@ -3,11 +3,11 @@ import type { AppDispatch, RootState } from "@/services/state/store";
 import CartItemCard from "@/components/CartItemCard";
 import Button from "@/components/ui/Button";
 import { deleteAllItems } from "@/services/state/cartSlice";
-import { addToast } from "@/services/state/toastSlice";
 import { BsCartX } from "react-icons/bs";
 import { useI18n } from "@/services/i18n/I18nContext";
 import ImageText from "@/components/ImageText";
 import Text from "@/components/ui/Text";
+import { showSuccessToast } from "@/utils/toast";
 
 const CartPage = () => {
   const { t } = useI18n();
@@ -66,12 +66,7 @@ const CartPage = () => {
               disabled={totalItems == 0}
               onClick={() => {
                 dispatch(deleteAllItems());
-                dispatch(
-                  addToast({
-                    message: t("common.success_purchese"),
-                    type: "success",
-                  }),
-                );
+                showSuccessToast(t("common.success_purchese"));
               }}
             >
               {t("common.order")}

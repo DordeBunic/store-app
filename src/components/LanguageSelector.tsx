@@ -12,12 +12,12 @@ const LanguageSelector = () => {
     (state: RootState) => state.preferences.preferences
   );
 
-  const { t, lang } = useI18n();
+  const { t } = useI18n();
   const dispatch = useDispatch<AppDispatch>();
   const languages = useTranslatedDropdown(Languages);
 
   const selectedLanguage =
-    preferencesLang?.language ?? lang;
+    preferencesLang?.language;
 
   const handleLanguageChange = (newLanguage: Language) => {
     dispatch(updatePreferences({

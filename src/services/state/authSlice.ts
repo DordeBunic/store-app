@@ -11,19 +11,18 @@ import {
   type User,
 } from "firebase/auth";
 import { auth, getAuth } from "@/services/api/firebase";
-import type { TranslationKey } from "../i18n/I18nContext";
 import type { AuthUser } from "@/models/AuthUser";
 import type { RegisterCredentials } from "@/models/RegisterCredentials";
 
 type AuthState = {
   user: AuthUser | null;
-  error: TranslationKey | null;
+  error: string | null;
 };
 
 export const logInUserAsync = createAsyncThunk<
   AuthUser,
   LoginCredentials,
-  { rejectValue: TranslationKey }
+  { rejectValue: string }
 >("auth/logInUserAsync", async (params, { rejectWithValue }) => {
   try {
     const credential = await signInWithEmailAndPassword(
@@ -39,14 +38,7 @@ export const logInUserAsync = createAsyncThunk<
       email: user.email,
     };
   } catch (error: any) {
-    if (
-      error.code === "auth/invalid-credential" ||
-      error.code === "auth/wrong-password" ||
-      error.code === "auth/user-not-found"
-    ) {
-      return rejectWithValue("auth.wrong_credentials");
-    }
-    return rejectWithValue("auth.something_went_wrong");
+      return rejectWithValue(error.code)
   }
 });
 export const logOutUserAsync = createAsyncThunk(
@@ -60,7 +52,7 @@ export const logOutUserAsync = createAsyncThunk(
 export const registerUserAsync = createAsyncThunk<
   AuthUser,
   RegisterCredentials,
-  { rejectValue: TranslationKey }
+  { rejectValue: string }
 >("auth/registerUserAsync", async (params, { rejectWithValue }) => {
   try {
     const credential = await createUserWithEmailAndPassword(
@@ -76,16 +68,7 @@ export const registerUserAsync = createAsyncThunk<
       email: user.email,
     };
   } catch (error: any) {
-    switch (error.code) {
-      case "auth/email-already-in-use":
-        return rejectWithValue("auth.email_already_in_use");
-      case "auth/invalid-email":
-        return rejectWithValue("auth.invalid_email");
-      case "auth/weak-password":
-        return rejectWithValue("auth.weak_password");
-      default:
-        return rejectWithValue("auth.something_went_wrong");
-    }
+      return rejectWithValue(error.code);
   }
 });
 
