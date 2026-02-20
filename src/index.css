@@ -1030,3 +1030,19 @@ p{
 .no-text-decoration{
   text-decoration: none
 }
+
+/* SPINNER*/
+
+.spinner {
+  border-style: solid;
+  border-color: #f3f3f3;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  border-top-color: var(--color-primary);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

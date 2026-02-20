@@ -10,6 +10,7 @@ import { POST_LOGIN_PAGES, PRE_LOGIN_PAGES } from "./constants/pageRoutes";
 import { ThemeProvider } from "./services/provider/ThemeProvider";
 import { ToastProvider } from "./services/provider/ToastProvider";
 import { I18nProvider } from "./services/i18n/I18nContext";
+import Spinner from "./components/ui/Spinner";
 
 const PreLoginLayout = lazy(() => import("./components/layout/PreLoginLayout"));
 const PostLoginLayout = lazy(
@@ -68,9 +69,15 @@ createRoot(document.getElementById("root")!).render(
     <ReduxProvider store={store}>
       <ToastProvider>
         <ThemeProvider>
-          <I18nProvider defaultLang="en">
-            <Suspense fallback="">
-            <RouterProvider router={router} />
+          <I18nProvider>
+            <Suspense
+              fallback={
+                <div className="full-width full-height flex align-items-center justify-content-center">
+                  <Spinner />
+                </div>
+              }
+            >
+              <RouterProvider router={router} />
             </Suspense>
           </I18nProvider>
         </ThemeProvider>
