@@ -4,9 +4,9 @@ import { useDispatch } from "react-redux";
 import { updateItem, deleteItem } from "@/services/state/cartSlice";
 import { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { useI18n } from "@/services/i18n/I18nContext";
-import { Typography } from "./ui/Text";
 import type { AppDispatch } from "@/services/state/store";
+import Text from "./ui/Text";
+import { useI18n } from "@/services/i18n/I18nContext";
 
 interface CartItemProps {
   item: CartItem;
@@ -47,13 +47,13 @@ const CartItemCard = ({ item }: CartItemProps) => {
         />
 
         <div className="flex flex-row gap-3 justify-content-space-between align-items-start">
-          <Typography className="m-0 clamp clamp-1 bold-text" as="h5">
+          <Text className="m-0 clamp clamp-1 bold-text" as="h5">
             {item.item.title}
-          </Typography>
-          <Typography>
+          </Text>
+          <Text>
             {t("common.price")}:{" "}
             <b className="text-primary">{item.item.price.toFixed(2)}$</b>
-          </Typography>
+          </Text>
           <Stepper showDeleteIcon value={count} onChange={handleCountChange} />
         </div>
       </div>

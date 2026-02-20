@@ -2,6 +2,7 @@ import RoundButton from "./ui/RoundButton";
 import { HiOutlineMinus, HiOutlinePlus } from "react-icons/hi";
 import { MdOutlineDelete } from "react-icons/md";
 import { pad2 } from "@/utils/number";
+import { useMemo } from "react";
 
 interface StepperProps {
   value: number;
@@ -31,12 +32,14 @@ const Stepper = ({
     onChange(value + 1);
   };
 
-  const renderLeftIcon = () => {
-    if (showDeleteIcon && value <= 1 && min === 0) {
-      return <MdOutlineDelete />;
-    }
-    return <HiOutlineMinus />;
-  };
+ const leftIcon = useMemo(() => {
+  return showDeleteIcon && value <= 1 && min === 0
+    ? <MdOutlineDelete />
+    : <HiOutlineMinus />;
+}, [showDeleteIcon, value, min]);
+
+<button>{leftIcon}</button>
+
 
   return (
     <div className="flex">
@@ -46,7 +49,7 @@ const Stepper = ({
         size="sm"
         disabled={isMin}
       >
-        {renderLeftIcon()}
+        {leftIcon}
       </RoundButton>
 
       <RoundButton

@@ -45,13 +45,13 @@ const defaultSizes: Record<AllowedTextElement, TextSize> = {
   label: "sm",
 };
 
-export function Typography({
+const Text = ({
   as = "p",
   size,
   className = "",
   children,
   ...props
-}: TypographyProps) {
+}: TypographyProps) => {
   const Component: AllowedTextElement = typeof as === "string" ? as : "p";
 
   const resolvedSize = size ?? defaultSizes[Component] ?? "base";
@@ -66,4 +66,4 @@ export function Typography({
   );
 }
 
-export default Typography;
+export default Text;

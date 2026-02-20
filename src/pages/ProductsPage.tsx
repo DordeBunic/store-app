@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import ProductsContainer from "@/components/ProductsContainer";
-import { Typography } from "@/components/ui/Text";
+import Text from "@/components/ui/Text";
 import { FiFilter } from "react-icons/fi";
 import ProductsFilter from "@/components/ProductFilters";
 import { useI18n } from "@/services/i18n/I18nContext";
@@ -63,9 +63,9 @@ const ProductsPage: React.FC = () => {
   return (
     <div className="page-width relative">
       <div className="flex justify-content-space-between align-items-center">
-        <Typography as="h1" className="p-4 bold-text">
+        <Text as="h1" className="p-4 bold-text">
           {t("page_titles.products")}
-        </Typography>
+        </Text>
 
         <button
           ref={triggerRef}

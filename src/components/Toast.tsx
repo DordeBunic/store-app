@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import type { ToastType } from "@/models/ToastMessage";
 import { IoCloseSharp } from "react-icons/io5";
-import { Typography } from "./ui/Text";
+import Text from "./ui/Text";
 
 interface ToastProps {
   id: string;
@@ -32,9 +32,9 @@ export const Toast = ({
       role="status"
       aria-live="polite"
     >
-      <Typography size="base" className={"pr-3 m-0 toast-" + toastType}>
+      <Text size="base" className={"pr-3 m-0 toast-" + toastType}>
         {message}
-      </Typography>
+      </Text>
       <IoCloseSharp
         onClick={() => onClose(id)}
         aria-label="Dismiss"

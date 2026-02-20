@@ -29,6 +29,7 @@ export const translations = {
       items_added_in_cart: "Items {title} added to cart",
       home: "Home",
       register: "Register",
+      success_purchese: "Successful purchase"
     },
     auth: {
       email_empty: "Email can't be empty",
@@ -97,6 +98,7 @@ export const translations = {
       items_added_in_cart: "Proizvodi {title} su dodani u korpu",
       home: "Početna stranica",
       register: "Registruj se",
+      success_purchese: "Uspjesna kupovina"
     },
     auth: {
       email_empty: "Email ne može biti prazno polje",

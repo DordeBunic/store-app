@@ -6,8 +6,8 @@ import { deleteAllItems } from "@/services/state/cartSlice";
 import { addToast } from "@/services/state/toastSlice";
 import { BsCartX } from "react-icons/bs";
 import { useI18n } from "@/services/i18n/I18nContext";
-import { Typography } from "@/components/ui/Text";
 import ImageText from "@/components/ImageText";
+import Text from "@/components/ui/Text";
 
 const CartPage = () => {
   const { t } = useI18n();
@@ -33,9 +33,9 @@ const CartPage = () => {
 
   return (
     <div className="page-max-width flex-grow-1 flex flex-row gap-5">
-      <Typography as="h1" className="p-4 bold-text">
+      <Text as="h1" className="p-4 bold-text">
         {t("page_titles.cart")}
-      </Typography>
+      </Text>
       <div className="border-thin radius-10 text border-color">
         <div className="flex flex-row gap-5 px-3">
           {cart.cartItems?.map((item, index) => (
@@ -51,7 +51,7 @@ const CartPage = () => {
       <div className="flex flex-column justify-content-end">
         <div className="flex flex-column gap-5 align-items-center">
           <div className="flex flex-row gap-10 border-thin p-10 radius-7 border-color">
-            <Typography className="text-align-center">
+            <Text className="text-align-center">
               {t(
                 totalItems === 1
                   ? "common.subtotal_one"
@@ -61,14 +61,14 @@ const CartPage = () => {
                 },
               )}
               <b className="text-primary text-lg">{totalPrice.toFixed(2)}$</b>
-            </Typography>
+            </Text>
             <Button
               disabled={totalItems == 0}
               onClick={() => {
                 dispatch(deleteAllItems());
                 dispatch(
                   addToast({
-                    message: "Successful purchase",
+                    message: t("common.success_purchese"),
                     type: "success",
                   }),
                 );

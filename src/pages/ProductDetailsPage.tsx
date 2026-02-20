@@ -4,9 +4,9 @@ import { useState } from "react";
 import useFetchProduct from "@/hooks/useFetchProduct";
 import { useAddToCart } from "@/hooks/useAddToCart";
 
-import { ImageText } from "@/components/ImageText";
+import ImageText from "@/components/ImageText";
 import ProductPurchase from "@/components/ProductPurchase";
-import { Typography } from "@/components/ui/Text";
+import Text from "@/components/ui/Text";
 import { BiSolidError } from "react-icons/bi";
 import { useI18n } from "@/services/i18n/I18nContext";
 
@@ -57,9 +57,9 @@ const ProductDetailsPage = () => {
       </div>
 
       <div className="full-width border-thin radius-10 border-color">
-        <Typography size="lg" className="p-4 text-align-center">
+        <Text size="lg" className="p-4 text-align-center">
           {data.description}
-        </Typography>
+        </Text>
       </div>
     </div>
   );

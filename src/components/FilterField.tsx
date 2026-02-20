@@ -1,5 +1,5 @@
 import Input from "./ui/Input";
-import { Typography } from "./ui/Text";
+import Text from "./ui/Text";
 
 type FilterFieldProps<T> = {
   label: string;
@@ -17,7 +17,7 @@ export const FilterField = <T,>({
   children,
 }: FilterFieldProps<T>) => (
   <div className="flex flex-row gap-3">
-    <Typography>{label}</Typography>
+    <Text>{label}</Text>
     {children ?? (
       <Input
         value={value as any}

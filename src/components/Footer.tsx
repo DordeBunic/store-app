@@ -1,7 +1,7 @@
 import { Link } from "react-router";
-import { Typography } from "./ui/Text";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import ImageText from "./ImageText";
+import Text from "./ui/Text";
 
 const Footer = () => {
   const year = new Date().getFullYear();
@@ -9,9 +9,9 @@ const Footer = () => {
   return (
     <div className="bg-subtile flex gap-6 py-4 justify-content-center">
       <footer>
-        <Typography className="text-base text-color-secondary text-align-center">
+        <Text className="text-base text-color-secondary text-align-center">
           © {year} <b>Đorđe Bunić</b>
-        </Typography>
+        </Text>
 
         <div className="flex gap-2 align-items-center">
           <Link
@@ -24,7 +24,7 @@ const Footer = () => {
             </ImageText>
           </Link>
 
-          <Typography className="bold-text">|</Typography>
+          <Text className="bold-text">|</Text>
           <Link
             className="flex gap-3 justify-content-center text-primary"
             to="https://www.linkedin.com/in/dordebunic"

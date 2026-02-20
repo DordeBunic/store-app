@@ -1,6 +1,6 @@
 export const STORAGE_KEYS = {
   CART_KEY: "cart",
-  PREFERENCES_KEY: "preferences",
+  PREFERENCES_KEY: "userPreferences",
 } as const;
 
 export type StorageKey = (typeof STORAGE_KEYS)[keyof typeof STORAGE_KEYS];

@@ -3,9 +3,9 @@ import Button from "@/components/ui/Button";
 import { useForm } from "@/hooks/useForm";
 import { useI18n } from "@/services/i18n/I18nContext";
 import { useLogin } from "@/hooks/useLogin";
-import { Typography } from "./ui/Text";
 import type { LoginCredentials } from "@/models/LoginCredentials";
 import FormInput from "./ui/FormInput";
+import Text from "./ui/Text";
 const LoginForm = () => {
   const { t } = useI18n();
   const { submit } = useLogin();
@@ -22,9 +22,9 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-row justify-content-center gap-10">
-        <Typography className="text-align-center" as="h1">
+        <Text className="text-align-center" as="h1">
           {t("page_titles.login")}
-        </Typography>
+        </Text>
 
         <div className="flex flex-row gap-4">
           <FormInput<LoginCredentials>

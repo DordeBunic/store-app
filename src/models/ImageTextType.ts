@@ -1,0 +1,1 @@
+export type ImageTextType = "primary" | "info" | "error" | "warning" | "text";

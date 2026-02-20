@@ -6,11 +6,9 @@ import {
 import type { CartItem } from "@/models/CartItem";
 import type { Product } from "@/models/Product";
 import { getAuth } from "firebase/auth";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db } from "../api/firebase";
 import type { RootState } from "./store";
-import { STORAGE_KEYS } from "@/constants/localStorage";
-import { storage } from "@/utils/localStorage";
+import { loadCartFromStorage, saveCartToStorage } from "@/utils/helpers/storage";
+import { loadCartFromFirestore, saveCartToFirestore } from "@/utils/helpers/firestoreStorage";
 
 type CartState = {
   cartItems: CartItem[];
@@ -18,13 +16,6 @@ type CartState = {
   initialized: boolean;
 };
 
-const loadCartFromStorage = (): CartItem[] => {
-  return storage.get<CartItem[]>(STORAGE_KEYS.CART_KEY) ?? [];
-};
-
-const saveCartToStorage = (items: CartItem[]) => {
-  storage.set(STORAGE_KEYS.CART_KEY, items);
-};
 
 const initialState: CartState = {
   cartItems: loadCartFromStorage(),
@@ -40,19 +31,17 @@ export const loadCart = createAsyncThunk<CartItem[]>(
     if (!user) {
       const local = loadCartFromStorage();
       saveCartToStorage(local);
-      return local;
+      return [];
     }
 
-    const ref = doc(db, "cart", user.uid);
-    const snap = await getDoc(ref);
-
-    const items = snap.exists() ? (snap.data().items ?? []) : [];
+    const items = await loadCartFromFirestore();
     saveCartToStorage(items);
+
     return items;
   },
 );
 
-const saveCartToFirestore = createAsyncThunk<
+const saveCart = createAsyncThunk<
   void,
   CartItem[],
   { state: RootState }
@@ -60,8 +49,7 @@ const saveCartToFirestore = createAsyncThunk<
   const user = getAuth().currentUser;
   if (!user) return;
 
-  const ref = doc(db, "cart", user.uid);
-  await setDoc(ref, { items: cartItems }, { merge: true });
+  saveCartToFirestore(cartItems)
 });
 
 export const addItem = createAsyncThunk<
@@ -75,7 +63,7 @@ export const addItem = createAsyncThunk<
   saveCartToStorage(cartItems);
 
   if (initialized) {
-    dispatch(saveCartToFirestore(cartItems));
+    dispatch(saveCart(cartItems));
   }
 });
 
@@ -90,7 +78,7 @@ export const updateItem = createAsyncThunk<
   saveCartToStorage(cartItems);
 
   if (initialized) {
-    dispatch(saveCartToFirestore(cartItems));
+    dispatch(saveCart(cartItems));
   }
 });
 
@@ -103,7 +91,7 @@ export const deleteItem = createAsyncThunk<void, number, { state: RootState }>(
     saveCartToStorage(cartItems);
 
     if (initialized) {
-      dispatch(saveCartToFirestore(cartItems));
+      dispatch(saveCart(cartItems));
     }
   },
 );
@@ -119,7 +107,7 @@ export const deleteAllItems = createAsyncThunk<
   saveCartToStorage(cartItems);
 
   if (initialized) {
-    dispatch(saveCartToFirestore(cartItems));
+    dispatch(saveCart(cartItems));
   }
 });
 

@@ -3,36 +3,16 @@ import {
   createAsyncThunk,
   type PayloadAction,
 } from "@reduxjs/toolkit";
-import { doc, getDoc, setDoc } from "firebase/firestore";
-import { db, auth } from "@/services/api/firebase";
+import { auth } from "@/services/api/firebase";
 import { waitForAuthReady } from "../api/authReady";
-import type { Theme } from "@/models/Theme";
-import type { Language } from "@/models/Language";
-import { STORAGE_KEYS } from "@/constants/localStorage";
-import { storage } from "@/utils/localStorage";
-
-export type Preferences = {
-  theme: Theme;
-  language: Language;
-};
+import type { Preferences } from "@/models/Prefrences";
+import { loadPreferencesFromStorage, savePreferencesToStorage } from "@/utils/helpers/storage";
+import { loadPreferencesFromFirestore, savePreferencesToFirestore } from "@/utils/helpers/firestoreStorage";
 
 type PreferencesState = {
-  preferences: Preferences | null;
+  preferences: Preferences;
   loading: boolean;
   error: string | null;
-};
-
-const defaultPreferences: Preferences = {
-  theme: "blue",
-  language: "en",
-};
-
-const loadPreferencesFromStorage = (): Preferences | null => {
-  return storage.get<Preferences>(STORAGE_KEYS.PREFERENCES_KEY);
-};
-
-const savePreferencesToStorage = (preferences: Preferences) => {
-  storage.set(STORAGE_KEYS.PREFERENCES_KEY, preferences);
 };
 
 export const loadPreferences = createAsyncThunk<Preferences>(
@@ -42,27 +22,18 @@ export const loadPreferences = createAsyncThunk<Preferences>(
       await waitForAuthReady();
       const user = auth.currentUser;
 
-      // Not logged in → localStorage or defaults
       if (!user) {
         const localPreferences =
-          loadPreferencesFromStorage() ?? defaultPreferences;
+          loadPreferencesFromStorage();
 
         savePreferencesToStorage(localPreferences);
         return localPreferences;
       }
 
-      const docRef = doc(db, "userPreferences", user.uid);
-      const docSnap = await getDoc(docRef);
-
-      const preferences = docSnap.exists()
-        ? (docSnap.data() as Preferences)
-        : defaultPreferences;
-
-      if (!docSnap.exists()) {
-        await setDoc(docRef, defaultPreferences);
-      }
-
+      var  preferences  = await loadPreferencesFromFirestore();
       savePreferencesToStorage(preferences);
+
+
       return preferences;
     } catch (err: any) {
       return rejectWithValue(err.message || "Failed to load preferences");
@@ -81,15 +52,12 @@ export const updatePreferences = createAsyncThunk<
       const user = auth.currentUser;
       const current = getState().preferences.preferences;
 
-      if (!current) throw new Error("No preferences loaded");
-
       const merged: Preferences = { ...current, ...updates };
 
       savePreferencesToStorage(merged);
 
       if (user) {
-        const docRef = doc(db, "userPreferences", user.uid);
-        await setDoc(docRef, updates, { merge: true });
+        savePreferencesToFirestore(updates)
       }
 
       return merged;
@@ -108,15 +76,7 @@ const initialState: PreferencesState = {
 const preferencesSlice = createSlice({
   name: "preferences",
   initialState,
-  reducers: {
-    clearPreferences: (state) => {
-      state.preferences = null;
-      state.loading = false;
-      state.error = null;
-
-      storage.remove(STORAGE_KEYS.PREFERENCES_KEY);
-    },
-  },
+  reducers: {  },
   extraReducers: (builder) => {
     builder
       .addCase(loadPreferences.pending, (state) => {
@@ -152,5 +112,4 @@ const preferencesSlice = createSlice({
   },
 });
 
-export const { clearPreferences } = preferencesSlice.actions;
 export default preferencesSlice.reducer;

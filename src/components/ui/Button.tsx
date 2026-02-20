@@ -1,8 +1,7 @@
+import type { ButtonVariant } from "@/models/ButtonVariant";
 import React, { type Ref } from "react";
 
-type ButtonVariant = "primary" | "outline" | "text" | "dropdown";
-
-export interface ButtonProps extends React.InputHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.InputHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   children: React.ReactNode;
   onClick?: () => void;

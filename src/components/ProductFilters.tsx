@@ -31,9 +31,8 @@ const ProductsFilter: React.FC<ProductFilterProps> = ({
 
   useOutsideClick(popoverRef, triggerRef, onClose, open);
 
-  const [filters, setFilters] = useState<Filters>(
-    parseFiltersFromParams(searchParams),
-  );
+ const [filters, setFilters] = useState<Filters>(() => parseFiltersFromParams(searchParams));
+
 
   if (!open) return null;
 

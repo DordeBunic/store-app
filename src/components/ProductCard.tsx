@@ -1,7 +1,7 @@
 import type { Product } from "@/models/Product";
 import { useI18n } from "@/services/i18n/I18nContext";
 import Button from "./ui/Button";
-import { Typography } from "./ui/Text";
+import Text from "./ui/Text";
 
 interface ProductCardProps {
   product: Product;
@@ -20,17 +20,17 @@ const ProductCard = ({ product, onAddToCard, onDetails }: ProductCardProps) => {
       />
 
       <div className="p-2 flex flex-row gap-2 flex-grow-1 justify-content-space-between">
-        <Typography className="clamp clamp-2 m-0 bold-text" size="lg">
+        <Text className="clamp clamp-2 m-0 bold-text" size="lg">
           {product.title}
-        </Typography>
-        <Typography className="text-sm clamp clamp-2">
+        </Text>
+        <Text className="text-sm clamp clamp-2">
           {product.description}
-        </Typography>
+        </Text>
 
         <div className="flex flex-row gap-3 mt-2">
-          <Typography className="bold-text bold-text" size="lg">
+          <Text className="bold-text bold-text" size="lg">
             {product.price.toFixed(2)}$
-          </Typography>
+          </Text>
 
           <div className="flex gap-3">
             <Button

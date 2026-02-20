@@ -1,11 +1,11 @@
-import { Typography } from "./Text";
+import Text from "./Text";
 
 type BadgeVariant = "error" | "warning" | "info" | "success";
 
 interface BadgeProps {
   number: number;
   variant?: BadgeVariant;
-  className?: string; // optional escape hatch
+  className?: string;
 }
 
 const VARIANT_CLASSES: Record<BadgeVariant, string> = {
@@ -19,7 +19,7 @@ const Badge = ({ number, variant = "info", className = "" }: BadgeProps) => {
   if (number === 0) return null;
 
   return (
-    <Typography
+    <Text
       className={[
         "badge position-absolute flex align-items-center justify-content-center radius-full text-sm p-0",
         VARIANT_CLASSES[variant],
@@ -27,7 +27,7 @@ const Badge = ({ number, variant = "info", className = "" }: BadgeProps) => {
       ].join(" ")}
     >
       {number > 99 ? "+99" : number}
-    </Typography>
+    </Text>
   );
 };
 

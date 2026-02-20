@@ -5,7 +5,7 @@ import type { AppDispatch } from "@/services/state/store";
 import { logOutUserAsync } from "@/services/state/authSlice";
 import ThemeSelector from "@/components/ThemeSelector";
 import LanguageSelector from "@/components/LanguageSelector";
-import { Typography } from "@/components/ui/Text";
+import Text from "@/components/ui/Text";
 
 const SettingsPage = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -13,9 +13,9 @@ const SettingsPage = () => {
 
   return (
     <div className="flex flex-row justify-content-center page-width gap-5">
-      <Typography as="h1" className="bold-text p-4">
+      <Text as="h1" className="bold-text p-4">
         {t("page_titles.settings")}
-      </Typography>
+      </Text>
       <div className="radius-6 border-thin p-4 card-shadow border-color flex flex-row gap-8">
         <ThemeSelector />
         <LanguageSelector />

@@ -1,6 +1,6 @@
-import { Typography, type TextSize } from "./ui/Text";
+import type { ImageTextType } from "@/models/ImageTextType";
+import Text, { type TextSize } from "./ui/Text";
 
-export type ImageTextType = "primary" | "info" | "error" | "warning" | "text";
 
 interface ImageTextProps {
   text: string;
@@ -11,7 +11,7 @@ interface ImageTextProps {
   horizontal?: boolean;
 }
 
-export const ImageText = ({
+const ImageText = ({
   text,
   type = "text",
   children,
@@ -27,9 +27,9 @@ export const ImageText = ({
     >
       {children && <div className={colorClass}>{children}</div>}
 
-      <Typography size={textSize} className={`${colorClass}`}>
+      <Text size={textSize} className={`${colorClass}`}>
         {text}
-      </Typography>
+      </Text>
     </div>
   );
 };

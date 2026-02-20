@@ -1,11 +1,9 @@
 import { useSelector } from "react-redux";
 import type { RootState } from "@/services/state/store";
 import {
-  useState,
   useCallback,
   createContext,
   useContext,
-  useEffect,
 } from "react";
 import { translations } from "./translations";
 import type { DotKeys } from "./types";
@@ -16,7 +14,6 @@ export type TranslationKey = DotKeys<TranslationSchema>;
 
 type I18nContextValue = {
   lang: Language;
-  setLang: (lang: Language) => void;
   t: (key: TranslationKey, vars?: Record<string, string | number>) => string;
 };
 const I18nContext = createContext<I18nContextValue | null>(null);
@@ -24,20 +21,12 @@ const I18nContext = createContext<I18nContextValue | null>(null);
 export const I18nProvider: React.FC<{
   children: React.ReactNode;
   defaultLang?: Language;
-}> = ({ children, defaultLang = "en" }) => {
+}> = ({ children, defaultLang }) => {
   const preferencesLang = useSelector(
-    (state: RootState) => state.preferences.preferences?.language,
+    (state: RootState) => state.preferences.preferences?.language ?? "en"
   );
 
-  const [lang, setLang] = useState<Language>(() => {
-    return preferencesLang ?? defaultLang;
-  });
-
-  useEffect(() => {
-    if (preferencesLang && preferencesLang !== lang) {
-      setLang(preferencesLang);
-    }
-  }, [preferencesLang]);
+  const lang = preferencesLang ?? defaultLang;
 
   const t = useCallback(
     (key: TranslationKey, vars: Record<string, string | number> = {}) => {
@@ -53,14 +42,14 @@ export const I18nProvider: React.FC<{
       return Object.entries(vars).reduce(
         (str, [varKey, varValue]) =>
           str.replace(`{${varKey}}`, String(varValue)),
-        value,
+        value
       );
     },
-    [lang],
+    [lang]
   );
 
   return (
-    <I18nContext.Provider value={{ lang, setLang, t }}>
+    <I18nContext.Provider value={{ lang, t }}>
       {children}
     </I18nContext.Provider>
   );

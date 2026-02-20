@@ -1,4 +1,4 @@
-import { StrictMode, lazy } from "react";
+import { StrictMode, Suspense, lazy } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import "./themes.css";
@@ -69,7 +69,9 @@ createRoot(document.getElementById("root")!).render(
       <ToastProvider>
         <ThemeProvider>
           <I18nProvider defaultLang="en">
+            <Suspense fallback="">
             <RouterProvider router={router} />
+            </Suspense>
           </I18nProvider>
         </ThemeProvider>
       </ToastProvider>

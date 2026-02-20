@@ -1,7 +1,7 @@
 import Stepper from "@/components/Stepper";
 import Button from "@/components/ui/Button";
 import { useI18n } from "@/services/i18n/I18nContext";
-import { Typography } from "./ui/Text";
+import Text from "./ui/Text";
 import Rating from "./Rating";
 
 type Props = {
@@ -29,12 +29,12 @@ const ProductPurchase = ({
     <div className="details-info flex flex-row gap-6 justify-content-space-between border-thin radius-10 p-5 border-color">
       <div className="flex flex-row gap-3">
         <Rating stars={ratings} count={ratingsCount} />
-        <Typography size="4xl" className="bold-text">
+        <Text size="4xl" className="bold-text">
           {title}
-        </Typography>
-        <Typography className="mt-4 text-primary" size="3xl">
+        </Text>
+        <Text className="mt-4 text-primary" size="3xl">
           {price.toFixed(2)}$
-        </Typography>
+        </Text>
       </div>
 
       <div className="flex gap-4 align-items-center details-buy">

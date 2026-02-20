@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import Button from "./Button";
-import { Typography } from "./Text";
+import Text from "./Text";
 import { IoIosArrowDown, IoMdCheckmark } from "react-icons/io";
 import type { Option } from "@/models/Option";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
@@ -40,7 +40,7 @@ export function Dropdown<T extends string>({
           onClick={() => setOpen(!open)}
           type="button"
         >
-          <Typography className="text-primary">{selected?.label}</Typography>
+          <Text className="text-primary">{selected?.label}</Text>
           <IoIosArrowDown className={`dropdown-icon ${open ? "rotate" : ""}`} />
         </Button>
 

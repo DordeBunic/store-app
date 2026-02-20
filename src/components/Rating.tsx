@@ -1,21 +1,28 @@
 import { IoStar, IoStarOutline } from "react-icons/io5";
-import Typography from "./ui/Text";
+import Text from "./ui/Text";
 
 interface RatingProps {
   stars: number;
   count: number;
 }
 
+const STAR_IDS = ["s1", "s2", "s3", "s4", "s5"];
+
 const Rating = ({ stars, count }: RatingProps) => {
   return (
     <div className="flex gap-1 text-primary align-items-center text-lg">
-      {Array.from({ length: 5 }, (_, index) =>
-        index < stars ? <IoStar key={index} /> : <IoStarOutline key={index} />,
+      {STAR_IDS.map((id, i) =>
+        i < stars ? (
+          <IoStar key={id} />
+        ) : (
+          <IoStarOutline key={id} />
+        )
       )}
+
       (
-      <Typography size="lg" className="text-primary  bold-text">
+      <Text size="lg" className="text-primary bold-text">
         {count}
-      </Typography>
+      </Text>
       )
     </div>
   );

@@ -1,5 +1,5 @@
 import { useI18n } from "@/services/i18n/I18nContext";
-import Typography from "./ui/Text";
+import Text from "./ui/Text";
 import { useRegister } from "@/hooks/useRegister";
 import type { ChangeEvent } from "react";
 import type { RegisterCredentials } from "@/models/RegisterCredentials";
@@ -22,9 +22,9 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit}>
       <div className="flex flex-row justify-content-center gap-10">
-        <Typography className="text-align-center" as="h1">
+        <Text className="text-align-center" as="h1">
           {t("page_titles.register")}
-        </Typography>
+        </Text>
 
         <div className="flex flex-row gap-4">
           <FormInput<RegisterCredentials>
