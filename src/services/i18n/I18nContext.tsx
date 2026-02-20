@@ -7,7 +7,7 @@ import {
 } from "react";
 import { translations } from "./translations";
 import type { DotKeys } from "./types";
-import type { Language } from "@/models/Language";
+import { Language } from "@/models/Language";
 
 type TranslationSchema = typeof translations.en;
 export type TranslationKey = DotKeys<TranslationSchema>;
@@ -23,7 +23,7 @@ export const I18nProvider: React.FC<{
   defaultLang?: Language;
 }> = ({ children, defaultLang }) => {
   const preferencesLang = useSelector(
-    (state: RootState) => state.preferences.preferences?.language ?? "en"
+    (state: RootState) => state.preferences.preferences?.language ?? Language.en
   );
 
   const lang = preferencesLang ?? defaultLang;

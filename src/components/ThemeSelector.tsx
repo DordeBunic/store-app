@@ -10,7 +10,7 @@ import Text from "./ui/Text";
 
 const ThemeSelector = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const preferencesLang = useSelector(
+  const preferencesTheme = useSelector(
     (state: RootState) => state.preferences
   );
   const { t } = useI18n();
@@ -18,10 +18,10 @@ const ThemeSelector = () => {
   const categories = useTranslatedDropdown(Themes);
 
   const selectedTheme =
-    preferencesLang.preferences?.theme ?? themeContext.theme;
+    preferencesTheme.preferences?.theme ?? themeContext.theme;
 
   const handleThemeChange = (newTheme: Theme) => {
-    dispatch(updatePreferences({ ...preferencesLang, theme: newTheme }));
+    dispatch(updatePreferences({ ...preferencesTheme, theme: newTheme }));
   };
 
   return (

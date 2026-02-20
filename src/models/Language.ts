@@ -1,9 +1,12 @@
-import type { translations } from "@/services/i18n/translations";
 import type { DropdownModel } from "./DropdownModel";
 
-export type Language = keyof typeof translations;
+export const Language = {
+  en: "en",
+  sr: "sr",
+} as const;
+export type Language = keyof typeof Language;
 
 export const Languages: DropdownModel<Language>[] = [
-  { value: "en", label: "languages.english" },
-  { value: "sr", label: "languages.serbian" },
+  { value: Language.en, label: "languages.english" },
+  { value: Language.sr, label: "languages.serbian" },
 ];
