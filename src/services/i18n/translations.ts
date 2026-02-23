@@ -3,9 +3,18 @@ export const translations = {
     page_titles: {
       settings: "Settings",
       products: "Products",
+      products_details: "Products details",
       cart: "Cart",
       login: "Login",
       register: "Register",
+      not_found: "Not Found",
+      routes : "Routes",
+    },
+    route_groups:{
+      shop: "Shop",
+      account: "Account",
+      authentication: "Authentication",
+      system: "System",
     },
     colors: {
       blue: "Blue",
@@ -72,9 +81,18 @@ export const translations = {
     page_titles: {
       settings: "Podešavanja",
       products: "Proizvodi",
+      products_details: "Detalji proizvoda",
       cart: "Korpa",
       login: "Prijavi se",
       register: "Registruj se",
+      not_found: "Stranica nije pronadjena",
+      routes : "Rute",
+    },
+    route_groups:{
+      shop: "Prodavnica",
+      account: "Nalog",
+      authentication: "Potvdra",
+      system: "Sistem",
     },
     colors: {
       red: "Crvena",

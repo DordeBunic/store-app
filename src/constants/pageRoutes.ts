@@ -10,3 +10,8 @@ export const PRE_LOGIN_PAGES = {
   HOME_PAGE: "/",
   REGISTER_PAGE: "/register",
 };
+
+export const UNIVERSAL_ROUTES = {
+  ERROR_PAGE:"*",
+  ROUTES_PAGE: "/sitemap"
+};

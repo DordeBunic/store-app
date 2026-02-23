@@ -86,7 +86,6 @@ const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    // LOGIN
     builder.addCase(logInUserAsync.fulfilled, (state, action) => {
       state.user = action.payload;
       state.error = null;
@@ -97,8 +96,6 @@ const authSlice = createSlice({
         state.error = action.payload;
       }
     });
-
-    // REGISTER
     builder.addCase(registerUserAsync.fulfilled, (state, action) => {
       state.user = action.payload;
       state.error = null;

@@ -26,7 +26,7 @@ const Button = ({
   const variants: Record<ButtonVariant, string> = {
     primary: "bg-primary text-color-on-primary no-border",
     outline: "bg-transparent border-primary text-primary button-outline",
-    text: "text-primary bg-transparent",
+    text: "text-primary bg-transparent no-border",
     dropdown: "bg-transparent dropdown-colors button-outline",
   };
 
