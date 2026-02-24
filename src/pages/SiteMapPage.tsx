@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { useI18n } from "@/services/i18n/I18nContext";
-import Text from "@/components/ui/Text";
-import Button from "@/components/ui/Button";
-import type { AppRoute, SitemapGroup } from "@/models/AppRoute";
-import { appRoutes } from "@/routes";
+import { useI18n } from "@features/i18n/I18nContext";
+import Text from "@shared/ui/Text";
+import Button from "@shared/ui/Button";
+import type { AppRoute, SitemapGroup } from "@shared/models/AppRoute";
+import { appRoutes } from "@app/routes";
 
 const flattenRoutes = (routes: AppRoute[]): AppRoute[] =>
   routes.flatMap((route) =>

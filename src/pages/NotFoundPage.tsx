@@ -1,10 +1,10 @@
 import { TbError404 } from "react-icons/tb";
-import Button from "@/components/ui/Button";
+import Button from "@shared/ui/Button";
 import { useNavigate } from "react-router";
-import { POST_LOGIN_PAGES } from "@/constants/pageRoutes";
-import { useI18n } from "@/services/i18n/I18nContext";
-import ImageText from "@/components/ImageText";
-import { IconSizes } from "@/constants/iconSizes";
+import { POST_LOGIN_PAGES } from "@shared/constants/pageRoutes";
+import { useI18n } from "@features/i18n/I18nContext";
+import ImageText from "@shared/components/ImageText";
+import { IconSizes } from "@shared/constants/iconSizes";
 const NotFoundPage = () => {
   const { t } = useI18n();
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
-import { API_ROUTES } from "@/constants/apiRoutes";
-import { getAuthToken } from "./authToken";
+import { API_ROUTES } from "@shared/constants/apiRoutes";
+import { getAuthToken } from "../../features/auth/services/authToken";
 
 type RequestOptions = RequestInit & {
   params?: Record<string, string | number>;

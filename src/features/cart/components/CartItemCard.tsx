@@ -1,0 +1,64 @@
+import Stepper from "@shared/components/Stepper";
+import type { CartItem } from "@/features/cart/models/CartItem";
+import { useDispatch } from "react-redux";
+import { updateItem, deleteItem } from "@/features/cart/state/cartSlice";
+import { useState } from "react";
+import { IoCloseSharp } from "react-icons/io5";
+import type { AppDispatch } from "@/app/store";
+import Text from "@shared/ui/Text";
+import { useI18n } from "@features/i18n/I18nContext";
+
+interface CartItemProps {
+  item: CartItem;
+}
+
+const CartItemCard = ({ item }: CartItemProps) => {
+  const { t } = useI18n();
+  const dispatch = useDispatch<AppDispatch>();
+  const [count, setCount] = useState(item.count);
+
+  const handleCountChange = (newValue: number) => {
+    setCount(newValue);
+
+    if (newValue <= 0) {
+      dispatch(deleteItem(item.item.id));
+    } else {
+      dispatch(updateItem({ ...item, count: newValue }));
+    }
+  };
+
+  const handleRemove = () => {
+    dispatch(deleteItem(item.item.id));
+  };
+
+  return (
+    <div className="position-relative p-2 pr-9">
+      <IoCloseSharp
+        className="cart-item-remove grid bg-transparent no-border text-lg position-absolute color-primary"
+        onClick={handleRemove}
+        aria-label="Remove item"
+      ></IoCloseSharp>
+
+      <div className="flex flex-column gap-6">
+        <img
+          src={item.item.image}
+          alt={item.item.title}
+          className="cart-item-image"
+        />
+
+        <div className="flex flex-row gap-3 justify-content-space-between align-items-start">
+          <Text className="m-0 clamp clamp-1 bold-text" as="h5">
+            {item.item.title}
+          </Text>
+          <Text>
+            {t("common.price")}:{" "}
+            <b className="text-primary">{item.item.price.toFixed(2)}$</b>
+          </Text>
+          <Stepper showDeleteIcon value={count} onChange={handleCountChange} />
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default CartItemCard;
