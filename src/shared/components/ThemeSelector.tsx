@@ -11,14 +11,14 @@ import Text from "@shared/ui/Text";
 const ThemeSelector = () => {
   const dispatch = useDispatch<AppDispatch>();
   const preferencesTheme = useSelector(
-    (state: RootState) => state.preferences
+    (state: RootState) => state.preferences.preferences
   );
   const { t } = useI18n();
   const themeContext = useTheme();
   const categories = useTranslatedDropdown(Themes);
 
   const selectedTheme =
-    preferencesTheme.preferences?.theme ?? themeContext.theme;
+    preferencesTheme.theme ?? themeContext.theme;
 
   const handleThemeChange = (newTheme: Theme) => {
     dispatch(updatePreferences({ ...preferencesTheme, theme: newTheme }));
