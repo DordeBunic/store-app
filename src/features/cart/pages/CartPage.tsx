@@ -67,7 +67,7 @@ const CartPage = () => {
               disabled={totalItems == 0}
               onClick={() => {
                 dispatch(deleteAllItems());
-                showSuccessToast(t("common.success_purchese"), dispatch);
+                showSuccessToast(t("common.success_purchase"), dispatch);
               }}
             >
               {t("common.order")}
